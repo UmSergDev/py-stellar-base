@@ -29,10 +29,10 @@ class Address(object):
 
     # TODO: Make network an enum
     def __init__(self,
-                 address=None,
-                 secret=None,
-                 network='TESTNET',
-                 horizon_uri=None):
+                 address: str = None,
+                 secret: str = None,
+                 network: str = 'TESTNET',
+                 horizon_uri: str = None) -> None:
         if secret:
             self.address = Keypair.from_seed(secret).address().decode()
         elif address:
@@ -62,7 +62,7 @@ class Address(object):
         self.inflation_destination = None
         self.subentry_count = None
 
-    def get(self):
+    def get(self) -> None:
         """Retrieve the account data that corresponds to this :class:`Address`.
 
         Retrieve the account data from Horizon for the account that corresponds
@@ -92,7 +92,7 @@ class Address(object):
         self.inflation_destination = acc.get('inflation_destination')
         self.subentry_count = acc.get('subentry_count')
 
-    def payments(self, cursor=None, order='asc', limit=10, sse=False):
+    def payments(self, cursor: str = None, order: str = 'asc', limit: int = 10, sse: bool = False) -> dict:
         """Retrieve the payments JSON from this instance's Horizon server.
 
         Retrieve the payments JSON response for the account associated with
@@ -108,7 +108,7 @@ class Address(object):
         """
         return self.horizon.account_payments(address=self.address, cursor=cursor, order=order, limit=limit, sse=sse)
 
-    def offers(self, cursor=None, order='asc', limit=10, sse=False):
+    def offers(self, cursor: str = None, order: str = 'asc', limit: int = 10, sse: bool = False) -> dict:
         """Retrieve the offers JSON from this instance's Horizon server.
 
         Retrieve the offers JSON response for the account associated with
@@ -124,7 +124,7 @@ class Address(object):
         """
         return self.horizon.account_offers(self.address, cursor=cursor, order=order, limit=limit, sse=sse)
 
-    def transactions(self, cursor=None, order='asc', limit=10, sse=False):
+    def transactions(self, cursor: str = None, order: str = 'asc', limit: int = 10, sse: bool = False) -> dict:
         """Retrieve the transactions JSON from this instance's Horizon server.
 
         Retrieve the transactions JSON response for the account associated with
@@ -140,7 +140,7 @@ class Address(object):
         return self.horizon.account_transactions(
             self.address, cursor=cursor, order=order, limit=limit, sse=sse)
 
-    def operations(self, cursor=None, order='asc', limit=10, sse=False):
+    def operations(self, cursor: str = None, order: str = 'asc', limit: int = 10, sse: bool = False) -> dict:
         """Retrieve the operations JSON from this instance's Horizon server.
 
         Retrieve the operations JSON response for the account associated with
@@ -157,7 +157,7 @@ class Address(object):
         return self.horizon.account_operations(
             self.address, cursor=cursor, order=order, limit=limit, sse=sse)
 
-    def trades(self, cursor=None, order='asc', limit=10, sse=False):
+    def trades(self, cursor: str = None, order: str = 'asc', limit: int = 10, sse: bool = False) -> dict:
         """Retrieve the trades JSON from this instance's Horizon server.
 
         Retrieve the trades JSON response for the account associated with
@@ -173,7 +173,7 @@ class Address(object):
         return self.horizon.account_trades(
             self.address, cursor=cursor, order=order, limit=limit, sse=sse)
 
-    def effects(self, cursor=None, order='asc', limit=10, sse=False):
+    def effects(self, cursor: str = None, order: str = 'asc', limit: int = 10, sse: bool = False) -> dict:
         """Retrieve the effects JSON from this instance's Horizon server.
 
         Retrieve the effects JSON response for the account associated with
