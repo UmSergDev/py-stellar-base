@@ -258,7 +258,7 @@ def is_valid_address(address):
 def is_valid_secret_key(secret):
     try:
         return decode_check('seed', secret)
-    except DecodeError:
+    except (DecodeError, TypeError):
         raise StellarSecretInvalidError('Invalid Stellar Secret: {}'.format(secret))
 
 
