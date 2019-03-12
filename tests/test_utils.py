@@ -39,7 +39,7 @@ class TestUtils(TestCase):
 
     def test_bytes_from_decode_data_raise(self):
         with pytest.raises(NotValidParamError, match="String argument should contain only ASCII characters"):
-            utils.bytes_from_decode_data("恒星")
+            utils.bytes_from_decode_data(u"恒星")
 
     def test_encode_check_raise(self):
         with pytest.raises(NotValidParamError, match="cannot encode null data"):
