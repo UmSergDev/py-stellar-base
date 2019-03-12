@@ -251,7 +251,7 @@ class StellarMnemonic(Mnemonic):
 def is_valid_address(address):
     try:
         return decode_check('account', address)
-    except DecodeError:
+    except (DecodeError, TypeError):
         raise StellarAddressInvalidError('Invalid Stellar Address: {}'.format(address))
 
 
